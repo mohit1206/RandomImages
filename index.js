@@ -1,28 +1,28 @@
 
 function getImg() {
     var imgArr = [];
-for(var i =0; i< 10; i++ ) {
+	for(var i =0; i< 10; i++ ) {
     var rnd = Math.floor(Math.random() * 100);
         if(!imgArr.includes(rnd) && imgArr.length < 10) {
-        imgArr.push(rnd);
-        var newUrl = 'https://picsum.photos/id/' + rnd + '/info';
-        fetch(newUrl, {
-            method: 'GET',
-            headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }
-        })
-        .then(response => response.json())
-        .then(data => {
-        images=data;
-        var list = "";
+			imgArr.push(rnd);
+			var newUrl = 'https://picsum.photos/id/' + rnd + '/info';
+			fetch(newUrl, {
+				method: 'GET',
+				headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }
+			})
+			.then(response => response.json())
+			.then(data => {
+			images=data;
+			var list = "";
 
-        const imgElem = `<div class="mySlides fade"><img src=${data.download_url}><div class="author">${data.author}</div></div>`;
-        list+= imgElem;
-        document.getElementById('slideshow-container').innerHTML+= list;
+			const imgElem = `<div class="mySlides fade"><img src=${data.download_url}><div class="author">${data.author}</div></div>`;
+			list+= imgElem;
+			document.getElementById('slideshow-container').innerHTML+= list;
 
-        })
-        .catch(err => console.error(err));
-    }
-}
+			})
+			.catch(err => console.error(err));
+		}
+	}
 }
 
 document.addEventListener('click',function(e){
